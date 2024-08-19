@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Pendaftaran Alumni</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Gaya Kustom Navbar */
+.navbar-custom {
+    background-color: #0066cc; /* Warna background biru */
+    position: fixed;           /* Navbar tetap di posisi atas saat scroll */
+    width: 100%;               /* Lebar 100% untuk mencakup seluruh layar */
+    top: 0;                    /* Posisi di bagian paling atas halaman */
+    z-index: 1000;             /* Z-index tinggi agar navbar berada di atas konten lain */
+    
+    padding: 10px 20px;        /* Memberikan padding untuk jarak dari konten */
+}
+
+.navbar-custom .navbar-brand,
+.navbar-custom .nav-link {
+    color: white;              /* Warna teks putih */
+    font-size: 1.2rem;         /* Ukuran font yang lebih besar */
+}
+
+.navbar-custom .navbar-brand:hover,
+.navbar-custom .nav-link:hover {
+    color: #ffcc00;            /* Warna teks berubah menjadi kuning saat dihover */
+}
+
+.navbar-custom .navbar-nav {
+    margin-left: auto;         /* Menempatkan menu di sebelah kanan */
+}
+
+.navbar-custom .nav-item {
+    margin-right: 15px;        /* Menambahkan jarak antar item menu */
+}
+
+.navbar-custom .navbar-brand {
+    margin-right: 30px;        /* Memberikan jarak antara logo dan menu */
+}
+
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+            padding-top: 80px;
+        }
+
+        .container {
+            margin-top: 30px;
+        }
+
+        .form-header {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+            border-radius: 5px 5px 0 0;
+        }
+
+        .form-body {
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 0 0 5px 5px;
+            background-color: white;
+        }
+
+        .button-group {
+            margin-top: 20px;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .button-group button {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container">
+            <a class="navbar-brand" href="#">AlumniKu</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="homealumi.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="beritaalumi.html">Berita</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="daftar.html">Daftar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="carialumi.html">Pencarian</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="forumalumi.html">Forum</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-header">BIODATA</div>
+                <div class="form-body">
+                    <form id="alumniForm">
+                        <div class="form-group">
+                            <label for="nim">NIM</label>
+                            <input type="text" class="form-control" id="nim" placeholder="123456789">
+                        </div>
+                        <div class="form-group">
+                            <label for="namaLengkap">Nama Lengkap</label>
+                            <input type="text" class="form-control" id="namaLengkap" placeholder="Masukkan Nama Lengkap">
+                        </div>
+                        <div class="form-group">
+                            <label for="emailAktif">Email Aktif</label>
+                            <input type="email" class="form-control" id="emailAktif" placeholder="Masukkan Email">
+                        </div>
+                        <div class="form-group">
+                            <label for="handPhone">HandPhone</label>
+                            <input type="text" class="form-control" id="handPhone" placeholder="081375653271">
+                        </div>
+                        <div class="form-group">
+                            <label for="tempatLahir">Tempat Lahir</label>
+                            <input type="text" class="form-control" id="tempatLahir" placeholder="Masukkan Tempat Lahir">
+                        </div>
+                        <div class="form-group">
+                            <label for="tanggalLahir">Tanggal Lahir</label>
+                            <input type="date" class="form-control" id="tanggalLahir">
+                        </div>
+                        <div class="form-group">
+                            <label for="alamat">Alamat</label>
+                            <textarea class="form-control" id="alamat" rows="3" placeholder="Jl. Bilal Medan"></textarea>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-header">Form Alumni</div>
+                <div class="form-body">
+                    <form id="alumniFormDetails">
+                        <div class="form-group">
+                            <label for="prodi">Prodi</label>
+                            <select class="form-control" id="prodi">
+                                <option>Manajemen Informatika</option>
+                                <option>Teknik Sipil</option>
+                                <option>Teknik Mesin</option>
+                                <option>Agroindustri</option>
+                                <option>Teknik Listrik</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="tahunLulus">Tahun Lulus</label>
+                            <input type="text" class="form-control" id="tahunLulus" placeholder="2018">
+                        </div>
+                        <div class="form-group">
+                            <label for="jenisKelamin">Jenis Kelamin</label>
+                            <select class="form-control" id="jenisKelamin">
+                                <option>Laki - Laki</option>
+                                <option>Perempuan</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="agama">Agama</label>
+                            <select class="form-control" id="agama">
+                                <option>Islam</option>
+                                <option>Katolik</option>
+                                <option>Kristen</option>
+                                <option>Hindu</option>
+                                <option>Budha</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="judulPenelitian">Judul Penelitian</label>
+                            <input type="text" class="form-control" id="judulPenelitian" placeholder="Masukkan Judul Penelitian">
+                        </div>
+                        <div class="form-group">
+                            <label for="pekerjaanSekarang">Pekerjaan Sekarang</label>
+                            <input type="text" class="form-control" id="pekerjaanSekarang" placeholder="Masukkan Pekerjaan">
+                        </div>
+                        <div class="form-group">
+                            <label for="nominalGaji">Nominal Gaji</label>
+                            <input type="text" class="form-control" id="nominalGaji" placeholder="Masukkan Nominal Gaji">
+                        </div>
+                        <div class="button-group">
+                            <button type="button" class="btn btn-secondary" onclick="window.location.href='carialumi.html'">Batal</button>
+                            <button type="reset" class="btn btn-warning">Reset</button>
+                            <button type="submit" class="btn btn-success">Simpan</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        document.getElementById('alumniFormDetails').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            let alumniData = {
+                nim: document.getElementById('nim').value,
+                namaLengkap: document.getElementById('namaLengkap').value,
+                emailAktif: document.getElementById('emailAktif').value,
+                handPhone: document.getElementById('handPhone').value,
+                tempatLahir: document.getElementById('tempatLahir').value,
+                tanggalLahir: document.getElementById('tanggalLahir').value,
+                alamat: document.getElementById('alamat').value,
+                prodi: document.getElementById('prodi').value,
+                tahunLulus: document.getElementById('tahunLulus').value,
+                jenisKelamin: document.getElementById('jenisKelamin').value,
+                agama: document.getElementById('agama').value,
+                judulPenelitian: document.getElementById('judulPenelitian').value,
+                pekerjaanSekarang: document.getElementById('pekerjaanSekarang').value,
+                nominalGaji: document.getElementById('nominalGaji').value
+            };
+
+            let alumniList = JSON.parse(localStorage.getItem('alumniData')) || [];
+            alumniList.push(alumniData);
+            localStorage.setItem('alumniData', JSON.stringify(alumniList));
+
+            alert('Data alumni telah disimpan!');
+            window.location.href = 'carialumi.html';
+        });
+    </script>
+</body>
+</html>

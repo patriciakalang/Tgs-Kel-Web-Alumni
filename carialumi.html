@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pencarian Alumni</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Gaya Kustom Navbar */
+.navbar-custom {
+    background-color: #0066cc; /* Warna background biru */
+    position: fixed;           /* Navbar tetap di posisi atas saat scroll */
+    width: 100%;               /* Lebar 100% untuk mencakup seluruh layar */
+    top: 0;                    /* Posisi di bagian paling atas halaman */
+    z-index: 1000;             /* Z-index tinggi agar navbar berada di atas konten lain */
+    
+    padding: 10px 20px;        /* Memberikan padding untuk jarak dari konten */
+}
+
+.navbar-custom .navbar-brand,
+.navbar-custom .nav-link {
+    color: white;              /* Warna teks putih */
+    font-size: 1.2rem;         /* Ukuran font yang lebih besar */
+}
+
+.navbar-custom .navbar-brand:hover,
+.navbar-custom .nav-link:hover {
+    color: #ffcc00;            /* Warna teks berubah menjadi kuning saat dihover */
+}
+
+.navbar-custom .navbar-nav {
+    margin-left: auto;         /* Menempatkan menu di sebelah kanan */
+}
+
+.navbar-custom .nav-item {
+    margin-right: 15px;        /* Menambahkan jarak antar item menu */
+}
+
+.navbar-custom .navbar-brand {
+    margin-right: 30px;        /* Memberikan jarak antara logo dan menu */
+}
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+            padding-top: 80px;
+        }
+
+        .container {
+            margin-top: 30px;
+        }
+
+        .form-header {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+            border-radius: 5px;
+        }
+
+        .table-container {
+            margin-top: 20px;
+        }
+
+        .table thead th {
+            text-align: center;
+        }
+
+        .btn-delete {
+            cursor: pointer;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container">
+            <a class="navbar-brand" href="#">AlumniKu</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="homealumi.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="beritaalumi.html">Berita</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="daftar.html">Daftar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="carialumi.html">Pencarian</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="forumalumi.html">Forum</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="form-header">PENCARIAN ALUMNI</div>
+        <input class="form-control" id="searchInput" type="text" placeholder="Cari alumni...">
+
+        <div class="table-container">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>NIM</th>
+                        <th>Nama Lengkap</th>
+                        <th>Email Aktif</th>
+                        <th>HandPhone</th>
+                        <th>Tempat Lahir</th>
+                        <th>Tanggal Lahir</th>
+                        <th>Alamat</th>
+                        <th>Prodi</th>
+                        <th>Tahun Lulus</th>
+                        <th>Jenis Kelamin</th>
+                        <th>Agama</th>
+                        <th>Judul Penelitian</th>
+                        <th>Pekerjaan Sekarang</th>
+                        <th>Nominal Gaji</th>
+                       
+                    </tr>
+                </thead>
+                <tbody id="alumniTableBody">
+                    <!-- Data akan dimuat di sini -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            loadAlumniData();
+        });
+
+        function loadAlumniData() {
+            const tableBody = document.getElementById('alumniTableBody');
+            tableBody.innerHTML = '';
+
+            let alumniData = JSON.parse(localStorage.getItem('alumniData')) || [];
+            alumniData.forEach((alumni, index) => {
+                const newRow = tableBody.insertRow();
+
+                newRow.insertCell(0).textContent = index + 1;
+                newRow.insertCell(1).textContent = alumni.nim;
+                newRow.insertCell(2).textContent = alumni.namaLengkap;
+                newRow.insertCell(3).textContent = alumni.emailAktif;
+                newRow.insertCell(4).textContent = alumni.handPhone;
+                newRow.insertCell(5).textContent = alumni.tempatLahir;
+                newRow.insertCell(6).textContent = alumni.tanggalLahir;
+                newRow.insertCell(7).textContent = alumni.alamat;
+                newRow.insertCell(8).textContent = alumni.prodi;
+                newRow.insertCell(9).textContent = alumni.tahunLulus;
+                newRow.insertCell(10).textContent = alumni.jenisKelamin;
+                newRow.insertCell(11).textContent = alumni.agama;
+                newRow.insertCell(12).textContent = alumni.judulPenelitian;
+                newRow.insertCell(13).textContent = alumni.pekerjaanSekarang;
+                newRow.insertCell(14).textContent = alumni.nominalGaji;
+
+               
+                
+            });
+        }
+
+        function deleteAlumni(index) {
+            let alumniData = JSON.parse(localStorage.getItem('alumniData')) || [];
+            alumniData.splice(index, 1);
+            localStorage.setItem('alumniData', JSON.stringify(alumniData));
+            loadAlumniData(); // Refresh table after deletion
+        }
+
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const filter = e.target.value.toLowerCase();
+            const rows = document.querySelectorAll('#alumniTableBody tr');
+
+            rows.forEach(row => {
+                const cells = row.querySelectorAll('td');
+                let match = false;
+
+                cells.forEach(cell => {
+                    if (cell.textContent.toLowerCase().includes(filter)) {
+                        match = true;
+                    }
+                });
+
+                row.style.display = match ? '' : 'none';
+            });
+        });
+    </script>
+</body>
+</html>

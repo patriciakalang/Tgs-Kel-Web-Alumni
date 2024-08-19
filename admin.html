@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Alumni</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Gaya Kustom Navbar */
+        .navbar-custom {
+            background-color: #0066cc;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 5px 15px;
+        }
+
+        .navbar-custom .navbar-brand,
+        .navbar-custom .nav-link {
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .navbar-custom .navbar-brand:hover,
+        .navbar-custom .nav-link:hover {
+            color: #ffcc00;
+        }
+
+        .navbar-custom .navbar-nav {
+            margin-left: auto;
+        }
+
+        .navbar-custom .nav-item {
+            margin-right: 15px;
+        }
+
+        .navbar-custom .navbar-brand {
+            margin-right: 30px;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+            padding-top: 80px;
+        }
+
+        .container {
+            margin-top: 30px;
+        }
+
+        .admin-header,
+        .total-alumni-header {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            border-radius: 5px;
+            font-size: 1.5rem; /* Menyamakan ukuran font dengan admin-header */
+            margin-bottom: 15px;
+        }
+
+        .admin-table {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container">
+            <a class="navbar-brand" href="#">AlumniKu</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="home.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="berita.html">Berita</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cari.html">Pencarian</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="forum.html">Forum</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin.html">Admin</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Elemen untuk total alumni -->
+        <div class="total-alumni-header" id="totalAlumni">Total Alumi : </div>
+        
+        <div class="admin-header">DATA ALUMNI</div>
+
+        <div class="admin-table">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>NIM</th>
+                        <th>Nama Lengkap</th>
+                        <th>Email Aktif</th>
+                        <th>HandPhone</th>
+                        <th>Tempat Lahir</th>
+                        <th>Tanggal Lahir</th>
+                        <th>Alamat</th>
+                        <th>Prodi</th>
+                        <th>Tahun Lulus</th>
+                        <th>Jenis Kelamin</th>
+                        <th>Agama</th>
+                        <th>Judul Penelitian</th>
+                        <th>Pekerjaan Sekarang</th>
+                        <th>Nominal Gaji</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody id="adminTableBody">
+                    <!-- Data alumni akan dimuat di sini -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            function loadAlumniData() {
+                let alumniData = JSON.parse(localStorage.getItem('alumniData')) || [];
+                $('#adminTableBody').empty();
+                
+                alumniData.forEach(function(alumni, index) {
+                    $('#adminTableBody').append(
+                        '<tr>' +
+                        '<td>' + (index + 1) + '</td>' +
+                        '<td>' + alumni.nim + '</td>' +
+                        '<td>' + alumni.namaLengkap + '</td>' +
+                        '<td>' + alumni.emailAktif + '</td>' +
+                        '<td>' + alumni.handPhone + '</td>' +
+                        '<td>' + alumni.tempatLahir + '</td>' +
+                        '<td>' + alumni.tanggalLahir + '</td>' +
+                        '<td>' + alumni.alamat + '</td>' +
+                        '<td>' + alumni.prodi + '</td>' +
+                        '<td>' + alumni.tahunLulus + '</td>' +
+                        '<td>' + alumni.jenisKelamin + '</td>' +
+                        '<td>' + alumni.agama + '</td>' +
+                        '<td>' + alumni.judulPenelitian + '</td>' +
+                        '<td>' + alumni.pekerjaanSekarang + '</td>' +
+                        '<td>' + alumni.nominalGaji + '</td>' +
+                        '<td><button class="btn btn-danger btn-sm" onclick="deleteRow(' + index + ')">Hapus</button></td>' +
+                        '</tr>'
+                    );
+                });
+
+                // Menampilkan total alumni yang terdaftar
+                $('#totalAlumni').text("Total Alumi : " + alumniData.length);
+            }
+
+            loadAlumniData();
+
+            window.deleteRow = function(index) {
+                let alumniData = JSON.parse(localStorage.getItem('alumniData')) || [];
+                alumniData.splice(index, 1);
+                localStorage.setItem('alumniData', JSON.stringify(alumniData));
+                loadAlumniData();
+            };
+        });
+    </script>
+</body>
+</html>

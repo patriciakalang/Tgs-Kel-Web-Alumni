@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pencarian Alumni</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Gaya Kustom Navbar */
+.navbar-custom {
+    background-color: #0066cc; /* Warna background biru */
+    position: fixed;           /* Navbar tetap di posisi atas saat scroll */
+    width: 100%;               /* Lebar 100% untuk mencakup seluruh layar */
+    top: 0;                    /* Posisi di bagian paling atas halaman */
+    z-index: 1000;             /* Z-index tinggi agar navbar berada di atas konten lain */
+    
+    padding: 10px 20px;        /* Memberikan padding untuk jarak dari konten */
+}
+
+.navbar-custom .navbar-brand,
+.navbar-custom .nav-link {
+    color: white;              /* Warna teks putih */
+    font-size: 1.2rem;         /* Ukuran font yang lebih besar */
+}
+
+.navbar-custom .navbar-brand:hover,
+.navbar-custom .nav-link:hover {
+    color: #ffcc00;            /* Warna teks berubah menjadi kuning saat dihover */
+}
+
+.navbar-custom .navbar-nav {
+    margin-left: auto;         /* Menempatkan menu di sebelah kanan */
+}
+
+.navbar-custom .nav-item {
+    margin-right: 15px;        /* Menambahkan jarak antar item menu */
+}
+
+.navbar-custom .navbar-brand {
+    margin-right: 30px;        /* Memberikan jarak antara logo dan menu */
+}
+
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+            padding-top: 70px; /* Sesuaikan dengan tinggi navbar untuk memberikan jarak yang cukup */
+        }
+
+        .container {
+            margin-top: 20px;
+            max-width: 90%; /* Menyesuaikan lebar container */
+        }
+
+        h2 {
+            font-size: 1.5rem; /* Menyesuaikan ukuran font judul */
+        }
+
+        .form-control {
+            font-size: 0.9rem; /* Menyesuaikan ukuran font input */
+            padding: 0.5rem; /* Menyesuaikan padding input */
+        }
+
+        .table {
+            font-size: 0.9rem; /* Menyesuaikan ukuran font tabel */
+            table-layout: auto; /* Mengatur tata letak tabel agar kolom bisa menyesuaikan lebar */
+            word-wrap: break-word;
+            white-space: normal;
+            border: 1px solid #dee2e6; /* Menambahkan border pada tabel */
+            border-collapse: collapse; /* Menggabungkan border agar tidak dobel */
+        }
+
+        .table th, .table td {
+            padding: 0.5rem; /* Menyesuaikan padding sel tabel */
+            vertical-align: top; /* Mengatur posisi vertikal teks */
+            border: 1px solid #dee2e6; /* Menambahkan border pada sel tabel */
+        }
+
+        /* Lebar Kolom */
+        .table th:nth-child(1), 
+        .table td:nth-child(1) { width: 5%; }
+        .table th:nth-child(2), 
+        .table td:nth-child(2) { width: 10%; }
+        .table th:nth-child(3), 
+        .table td:nth-child(3) { width: 15%; }
+        .table th:nth-child(4), 
+        .table td:nth-child(4) { width: 15%; }
+        .table th:nth-child(5), 
+        .table td:nth-child(5) { width: 10%; }
+        .table th:nth-child(6), 
+        .table td:nth-child(6) { width: 10%; }
+        .table th:nth-child(7), 
+        .table td:nth-child(7) { width: 10%; }
+        .table th:nth-child(8), 
+        .table td:nth-child(8) { width: 15%; }
+        .table th:nth-child(9), 
+        .table td:nth-child(9) { width: 10%; }
+        .table th:nth-child(10), 
+        .table td:nth-child(10) { width: 10%; }
+        .table th:nth-child(11), 
+        .table td:nth-child(11) { width: 10%; }
+        .table th:nth-child(12), 
+        .table td:nth-child(12) { width: 15%; }
+        .table th:nth-child(13), 
+        .table td:nth-child(13) { width: 15%; }
+        .table th:nth-child(14), 
+        .table td:nth-child(14) { width: 15%; }
+        .table th:nth-child(15), 
+        .table td:nth-child(15) { width: 10%; }
+
+        /* Ensure text doesn't overflow */
+        .table td {
+            overflow-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">AlumniKu</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="home.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="berita.html">Berita</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cari.html">Pencarian</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="forum.html">Forum</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin.html">Admin</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2 class="text-center mb-4">Pencarian Alumni</h2>
+
+        <div class="row">
+            <div class="col">
+                <!-- Input Pencarian -->
+                <input type="text" id="searchInput" class="form-control mb-3" placeholder="Cari Nama atau Tahun Lulus">
+
+                <div class="table-responsive">
+                    <table class="table table-striped" id="alumniTable">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>NIM</th>
+                                <th>Nama Lengkap</th>
+                                <th>Email Aktif</th>
+                                <th>HandPhone</th>
+                                <th>Tempat Lahir</th>
+                                <th>Tanggal Lahir</th>
+                                <th>Alamat</th>
+                                <th>Prodi</th>
+                                <th>Tahun Lulus</th>
+                                <th>Jenis Kelamin</th>
+                                <th>Agama</th>
+                                <th>Judul Penelitian</th>
+                                <th>Pekerjaan Sekarang</th>
+                                <th>Nominal Gaji</th>
+                            </tr>
+                        </thead>
+                        <tbody id="alumniTableBody">
+                            <!-- Baris tabel akan dimuat di sini -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS dan dependensi -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        // Memuat data dari local storage ketika halaman dimuat
+        document.addEventListener('DOMContentLoaded', function() {
+            loadAlumniData();
+        });
+
+        // Fungsi untuk memuat data alumni dari local storage
+        function loadAlumniData() {
+            const tableBody = document.getElementById('alumniTableBody');
+            tableBody.innerHTML = '';
+
+            let alumniData = JSON.parse(localStorage.getItem('alumniData')) || [];
+            alumniData.forEach((alumni, index) => {
+                const newRow = tableBody.insertRow();
+
+                newRow.insertCell(0).textContent = index + 1;
+                newRow.insertCell(1).textContent = alumni.nim;
+                newRow.insertCell(2).textContent = alumni.namaLengkap;
+                newRow.insertCell(3).textContent = alumni.emailAktif;
+                newRow.insertCell(4).textContent = alumni.handPhone;
+                newRow.insertCell(5).textContent = alumni.tempatLahir;
+                newRow.insertCell(6).textContent = alumni.tanggalLahir;
+                newRow.insertCell(7).textContent = alumni.alamat;
+                newRow.insertCell(8).textContent = alumni.prodi;
+                newRow.insertCell(9).textContent = alumni.tahunLulus;
+                newRow.insertCell(10).textContent = alumni.jenisKelamin;
+                newRow.insertCell(11).textContent = alumni.agama;
+                newRow.insertCell(12).textContent = alumni.judulPenelitian;
+                newRow.insertCell(13).textContent = alumni.pekerjaanSekarang;
+                newRow.insertCell(14).textContent = alumni.nominalGaji;
+            });
+        }
+
+        // Fungsi untuk melakukan pencarian
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const filter = e.target.value.toLowerCase();
+            const rows = document.querySelectorAll('#alumniTable tbody tr');
+
+            rows.forEach(row => {
+                const cells = row.querySelectorAll('td');
+                let match = false;
+
+                cells.forEach(cell => {
+                    if (cell.textContent.toLowerCase().indexOf(filter) > -1) {
+                        match = true;
+                    }
+                });
+
+                if (match) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
